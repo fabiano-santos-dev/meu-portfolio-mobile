@@ -1,50 +1,62 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Cabecalho from '../componentes/Cabecalho';
+import Sobre from '../componentes/Sobre';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Cabecalho />
+      <ScrollView contentContainerStyle={styles.scrollConteudo}>
+        <View style={styles.conteudo}>
+          <Image source={require('../../assets/fs1.png')} style={styles.foto} />
+          <Text style={styles.introducao}>Olá, eu sou</Text>
 
-      <View style={styles.conteudo}>
-        <Image source={require('../../assets/fs1.png')} style={styles.foto} />
-        <Text style={styles.introducao}>Olá, eu sou</Text>
+          <Text style={styles.nome}>
+            Fabiano <Text style={styles.nomeDestaque}>Alves</Text>
+          </Text>
 
-        <Text style={styles.nome}>
-          Fabiano <Text style={styles.nomeDestaque}>Alves</Text>
-        </Text>
+          <Text style={styles.profissao}>Desenvolvedor Web</Text>
 
-        <Text style={styles.profissao}>Desenvolvedor Web</Text>
+          <Text style={styles.descricao}>
+            Sou estudante de Análise e Desenvolvimento de Sistemas e estou
+            construindo minha experiência através de projetos modernos,
+            funcionais e responsivos.
+          </Text>
+          <View style={styles.botoes}>
+            <Pressable style={styles.botaoProjetos}>
+              <Text style={styles.textoBotaoProjetos}>Meus projetos →</Text>
+            </Pressable>
+            <Pressable style={styles.botaoCurriculo}>
+              <Text style={styles.textoBotaoCurriculo}>Ver currículo ↓</Text>
+            </Pressable>
+          </View>
+          <View style={styles.redesSociais}>
+            <Pressable>
+              <Ionicons name='logo-github' size={28} color='#ffffff' />
+            </Pressable>
 
-        <Text style={styles.descricao}>
-          Sou estudante de Análise e Desenvolvimento de Sistemas e estou
-          construindo minha experiência através de projetos modernos, funcionais
-          e responsivos.
-        </Text>
-        <View style={styles.botoes}>
-          <Pressable style={styles.botaoProjetos}>
-            <Text style={styles.textoBotaoProjetos}>Meus projetos →</Text>
-          </Pressable>
-          <Pressable style={styles.botaoCurriculo}>
-            <Text style={styles.textoBotaoCurriculo}>Ver currículo ↓</Text>
-          </Pressable>
+            <Pressable>
+              <Ionicons name='logo-linkedin' size={28} color='#ffffff' />
+            </Pressable>
+
+            <Pressable>
+              <Ionicons name='mail-outline' size={28} color='#ffffff' />
+            </Pressable>
+          </View>
         </View>
-        <View style={styles.redesSociais}>
-          <Pressable>
-            <Ionicons name='logo-github' size={28} color='#ffffff' />
-          </Pressable>
-
-          <Pressable>
-            <Ionicons name='logo-linkedin' size={28} color='#ffffff' />
-          </Pressable>
-
-          <Pressable>
-            <Ionicons name='mail-outline' size={28} color='#ffffff' />
-          </Pressable>
-        </View>
-      </View>
+        <View style={styles.sobreSecao}>
+  <Sobre />
+</View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -134,4 +146,10 @@ const styles = StyleSheet.create({
     gap: 22,
     marginTop: 25,
   },
+  scrollConteudo: {
+    paddingTop: 30,
+  },
+  sobreSecao: {
+  marginTop: 50,
+},
 });
