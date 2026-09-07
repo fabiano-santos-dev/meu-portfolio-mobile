@@ -1,3 +1,4 @@
+import Skills from '@/componentes/Skills';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Image,
@@ -54,8 +55,9 @@ export default function HomeScreen() {
           </View>
         </View>
         <View style={styles.sobreSecao}>
-  <Sobre />
-</View>
+          <Sobre />
+        </View>
+        <Skills />
       </ScrollView>
     </SafeAreaView>
   );
@@ -150,6 +152,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   sobreSecao: {
-  marginTop: 50,
-},
+    marginTop: 50,
+  },
 });
