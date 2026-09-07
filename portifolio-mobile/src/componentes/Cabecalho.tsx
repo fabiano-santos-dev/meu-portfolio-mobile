@@ -6,7 +6,6 @@ export default function Cabecalho() {
 
   return (
     <View>
-      {/* Cabeçalho */}
       <View style={styles.header}>
         <Text style={styles.logo}>
           Meu<Text style={styles.logoDestaque}>Portfólio</Text>
@@ -16,21 +15,18 @@ export default function Cabecalho() {
           onPress={() => setMenuAberto(!menuAberto)}
           style={styles.botaoMenu}
         >
-          <Text style={styles.menu}>{menuAberto ? '✕' : '☰'}</Text>
+          <Text style={styles.menu}>
+            {menuAberto ? '✕' : '☰'}
+          </Text>
         </Pressable>
       </View>
 
-      {/* Menu mobile */}
       {menuAberto && (
         <View style={styles.menuAberto}>
           <Text style={styles.itemMenu}>Início</Text>
-
           <Text style={styles.itemMenu}>Sobre</Text>
-
           <Text style={styles.itemMenu}>Skills</Text>
-
           <Text style={styles.itemMenu}>Projetos</Text>
-
           <Text style={styles.itemMenu}>Contato</Text>
         </View>
       )}
