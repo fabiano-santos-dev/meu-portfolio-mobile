@@ -1,94 +1,163 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  Linking,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 export default function Projetos() {
+  const abrirProjeto = async (url: string) => {
+    try {
+      await Linking.openURL(url);
+    } catch (error) {
+      console.log('Erro ao abrir projeto:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.tituloPequeno}>MEUS PROJETOS</Text>
 
-      <Text style={styles.titulo}>Projetos em destaque</Text>
+      <Text style={styles.tituloPequeno}>
+        MEUS PROJETOS
+      </Text>
+
+      <Text style={styles.titulo}>
+        Projetos em destaque
+      </Text>
 
       {/* PROJETO CONSTRULINK */}
+
       <View style={styles.card}>
+
         <Image
           source={require('../../assets/construlink_home.png')}
           style={styles.imagemProjeto}
         />
 
         <View style={styles.conteudoCard}>
+
           <Text style={styles.nomeProjeto}>
-            <Text style={styles.nomeDestaque}>Construlink</Text>
-            {' - '}Conectando clientes aos profissionais certos para cada
-            serviço.
+            <Text style={styles.nomeDestaque}>
+              Construlink
+            </Text>
+            {' - '}
+            Conectando clientes aos profissionais certos para cada serviço.
           </Text>
 
           <Text style={styles.descricao}>
-            O Construlink é uma plataforma desenvolvida para conectar clientes a
-            profissionais das áreas de construção, manutenção e reformas. A
+            O Construlink é uma plataforma desenvolvida para conectar clientes
+            a profissionais das áreas de construção, manutenção e reformas. A
             aplicação permite que clientes encontrem profissionais por
             especialidade ou região, visualizem seus perfis, acompanhem
             avaliações e solicitem contato para serviços.
           </Text>
 
           <View style={styles.tecnologias}>
+
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>HTML</Text>
+              <Text style={styles.textoTag}>
+                HTML
+              </Text>
             </View>
 
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>CSS</Text>
+              <Text style={styles.textoTag}>
+                CSS
+              </Text>
             </View>
 
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>JAVASCRIPT</Text>
+              <Text style={styles.textoTag}>
+                JAVASCRIPT
+              </Text>
             </View>
 
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>REACT</Text>
+              <Text style={styles.textoTag}>
+                REACT
+              </Text>
             </View>
+
           </View>
 
-          <Pressable style={styles.botao}>
-            <Text style={styles.textoBotao}>Ver projeto</Text>
+          <Pressable
+            style={styles.botao}
+            onPress={() =>
+              abrirProjeto(
+                'https://github.com/NatanSamuel52/Contrulink'
+              )
+            }
+          >
+            <Text style={styles.textoBotao}>
+              Ver projeto
+            </Text>
           </Pressable>
+
         </View>
       </View>
 
       {/* PROJETO PORTFÓLIO */}
+
       <View style={styles.card}>
+
         <Image
           source={require('../../assets/projeto_portifolio.png')}
           style={styles.imagemProjeto}
         />
 
         <View style={styles.conteudoCard}>
+
           <Text style={styles.nomeProjeto}>
-            <Text style={styles.nomeDestaque}>Meu Portfólio</Text>
+            <Text style={styles.nomeDestaque}>
+              Meu Portfólio
+            </Text>
           </Text>
 
           <Text style={styles.descricao}>
-            Portfólio pessoal desenvolvido com Html, CSS, JavaScript, React, Git
-            e Git-Hub.
+            Portfólio pessoal desenvolvido com Html, CSS, JavaScript, React,
+            Git e Git-Hub.
           </Text>
 
           <View style={styles.tecnologias}>
+
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>REACT</Text>
+              <Text style={styles.textoTag}>
+                REACT
+              </Text>
             </View>
 
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>JAVASCRIPT</Text>
+              <Text style={styles.textoTag}>
+                JAVASCRIPT
+              </Text>
             </View>
 
             <View style={styles.tag}>
-              <Text style={styles.textoTag}>CSS</Text>
+              <Text style={styles.textoTag}>
+                CSS
+              </Text>
             </View>
+
           </View>
 
-          <Pressable style={styles.botao}>
-            <Text style={styles.textoBotao}>Ver projeto</Text>
+          <Pressable
+            style={styles.botao}
+            onPress={() =>
+              abrirProjeto(
+                'https://github.com/fabiano-santos-dev/meu-portfolio-react'
+              )
+            }
+          >
+            <Text style={styles.textoBotao}>
+              Ver projeto
+            </Text>
           </Pressable>
+
         </View>
       </View>
+
     </View>
   );
 }
@@ -125,12 +194,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
- imagemProjeto: {
-  width: '100%',
-  height: 220,
-  resizeMode: 'contain',
-  backgroundColor: '#171717',
-},
+  imagemProjeto: {
+    width: '100%',
+    height: 220,
+    resizeMode: 'contain',
+    backgroundColor: '#171717',
+  },
 
   conteudoCard: {
     padding: 25,
