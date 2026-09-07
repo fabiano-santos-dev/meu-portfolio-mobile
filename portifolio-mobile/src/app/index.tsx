@@ -37,33 +37,27 @@ export default function HomeScreen() {
         ref={scrollViewRef}
         contentContainerStyle={styles.scrollConteudo}
       >
-        {/* HOME */}
         <View onLayout={registrarSecao('inicio')}>
           <Home onNavegar={navegar} />
         </View>
 
-        {/* SOBRE */}
         <View style={styles.sobreSecao} onLayout={registrarSecao('sobre')}>
           <Sobre />
         </View>
 
-        {/* SKILLS */}
         <View onLayout={registrarSecao('skills')}>
           <Skills />
         </View>
 
-        {/* PROJETOS */}
         <View onLayout={registrarSecao('projetos')}>
           <Projetos />
         </View>
 
-        {/* CONTATO */}
         <View onLayout={registrarSecao('contato')}>
           <Contato />
         </View>
 
-        {/* FOOTER */}
-        <Footer />
+        <Footer onNavegar={navegar} />
       </ScrollView>
     </SafeAreaView>
   );

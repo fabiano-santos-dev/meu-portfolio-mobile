@@ -1,7 +1,19 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export default function Rodape() {
+type RodapeProps = {
+  onNavegar: (secao: string) => void;
+};
+
+export default function Rodape({ onNavegar }: RodapeProps) {
+  const abrirLink = async (url: string) => {
+    try {
+      await Linking.openURL(url);
+    } catch (error) {
+      console.log('Erro ao abrir link:', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>
@@ -14,11 +26,19 @@ export default function Rodape() {
       </Text>
 
       <View style={styles.redesSociais}>
-        <Pressable>
+        <Pressable
+          onPress={() => abrirLink('https://github.com/fabiano-santos-dev')}
+        >
           <Ionicons name='logo-github' size={26} color='#ffffff' />
         </Pressable>
 
-        <Pressable>
+        <Pressable
+          onPress={() =>
+            abrirLink(
+              'https://www.linkedin.com/in/fabiano-fasnaweb-desenvolvedor/'
+            )
+          }
+        >
           <Ionicons name='logo-linkedin' size={26} color='#ffffff' />
         </Pressable>
       </View>
@@ -26,11 +46,25 @@ export default function Rodape() {
       <Text style={styles.tituloLinks}>Links rápidos</Text>
 
       <View style={styles.links}>
-        <Text style={styles.link}>Início</Text>
-        <Text style={styles.link}>Sobre</Text>
-        <Text style={styles.link}>Skills</Text>
-        <Text style={styles.link}>Projetos</Text>
-        <Text style={styles.link}>Contato</Text>
+        <Pressable onPress={() => onNavegar('inicio')}>
+          <Text style={styles.link}>Início</Text>
+        </Pressable>
+
+        <Pressable onPress={() => onNavegar('sobre')}>
+          <Text style={styles.link}>Sobre</Text>
+        </Pressable>
+
+        <Pressable onPress={() => onNavegar('skills')}>
+          <Text style={styles.link}>Skills</Text>
+        </Pressable>
+
+        <Pressable onPress={() => onNavegar('projetos')}>
+          <Text style={styles.link}>Projetos</Text>
+        </Pressable>
+
+        <Pressable onPress={() => onNavegar('contato')}>
+          <Text style={styles.link}>Contato</Text>
+        </Pressable>
       </View>
 
       <View style={styles.divisor} />
