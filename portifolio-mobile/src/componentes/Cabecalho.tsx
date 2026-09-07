@@ -1,11 +1,31 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from 'react-native';
 
-export default function Cabecalho() {
+type CabecalhoProps = {
+  onNavegar: (secao: string) => void;
+};
+
+export default function Cabecalho({ onNavegar }: CabecalhoProps) {
   const [menuAberto, setMenuAberto] = useState(false);
 
+  const navegar = (secao: string) => {
+    setMenuAberto(false);
+    onNavegar(secao);
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#171717"
+      />
+
       <View style={styles.header}>
         <Text style={styles.logo}>
           Meu<Text style={styles.logoDestaque}>Portfólio</Text>
@@ -23,11 +43,27 @@ export default function Cabecalho() {
 
       {menuAberto && (
         <View style={styles.menuAberto}>
-          <Text style={styles.itemMenu}>Início</Text>
-          <Text style={styles.itemMenu}>Sobre</Text>
-          <Text style={styles.itemMenu}>Skills</Text>
-          <Text style={styles.itemMenu}>Projetos</Text>
-          <Text style={styles.itemMenu}>Contato</Text>
+
+          <Pressable onPress={() => navegar('inicio')}>
+            <Text style={styles.itemMenu}>Início</Text>
+          </Pressable>
+
+          <Pressable onPress={() => navegar('sobre')}>
+            <Text style={styles.itemMenu}>Sobre</Text>
+          </Pressable>
+
+          <Pressable onPress={() => navegar('skills')}>
+            <Text style={styles.itemMenu}>Skills</Text>
+          </Pressable>
+
+          <Pressable onPress={() => navegar('projetos')}>
+            <Text style={styles.itemMenu}>Projetos</Text>
+          </Pressable>
+
+          <Pressable onPress={() => navegar('contato')}>
+            <Text style={styles.itemMenu}>Contato</Text>
+          </Pressable>
+
         </View>
       )}
     </View>
@@ -35,6 +71,11 @@ export default function Cabecalho() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#171717',
+    paddingTop: 30,
+  },
+
   header: {
     width: '100%',
     height: 70,
