@@ -13,6 +13,8 @@ import Cabecalho from '../componentes/Cabecalho';
 import Projetos from '../componentes/Projetos';
 import Sobre from '../componentes/Sobre';
 import Contato from '../componentes/Contato';
+import Rodape from '../componentes/Rodape';
+import Footer from '@/componentes/Footer';
 
 export default function HomeScreen() {
   return (
@@ -62,6 +64,7 @@ export default function HomeScreen() {
         <Skills />
         <Projetos />
         <Contato />
+        <Footer />
       </ScrollView>
     </SafeAreaView>
   );
