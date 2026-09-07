@@ -2,12 +2,12 @@ import { useRef } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import Cabecalho from '../componentes/Cabecalho';
-import Home from '../componentes/Home';
-import Sobre from '../componentes/Sobre';
-import Skills from '../componentes/Skills';
-import Projetos from '../componentes/Projetos';
 import Contato from '../componentes/Contato';
 import Footer from '../componentes/Footer';
+import Home from '../componentes/Home';
+import Projetos from '../componentes/Projetos';
+import Skills from '../componentes/Skills';
+import Sobre from '../componentes/Sobre';
 
 export default function HomeScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
@@ -31,24 +31,19 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <Cabecalho onNavegar={navegar} />
 
       <ScrollView
         ref={scrollViewRef}
         contentContainerStyle={styles.scrollConteudo}
       >
-
         {/* HOME */}
         <View onLayout={registrarSecao('inicio')}>
-          <Home />
+          <Home onNavegar={navegar} />
         </View>
 
         {/* SOBRE */}
-        <View
-          style={styles.sobreSecao}
-          onLayout={registrarSecao('sobre')}
-        >
+        <View style={styles.sobreSecao} onLayout={registrarSecao('sobre')}>
           <Sobre />
         </View>
 
@@ -69,9 +64,7 @@ export default function HomeScreen() {
 
         {/* FOOTER */}
         <Footer />
-
       </ScrollView>
-
     </SafeAreaView>
   );
 }
