@@ -1,12 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Contato() {
   const [nome, setNome] = useState('');
@@ -26,16 +20,16 @@ export default function Contato() {
 
       <View style={styles.informacoes}>
         <View style={styles.informacao}>
-          <Ionicons name="mail-outline" size={26} color="#3b82f6" />
+          <Ionicons name='mail-outline' size={26} color='#3b82f6' />
 
           <View>
             <Text style={styles.label}>Email</Text>
-            <Text style={styles.valor}>seuemail@email.com</Text>
+            <Text style={styles.valor}>fasnaweb2020@gmail.com</Text>
           </View>
         </View>
 
         <View style={styles.informacao}>
-          <Ionicons name="location-outline" size={26} color="#3b82f6" />
+          <Ionicons name='location-outline' size={26} color='#3b82f6' />
 
           <View>
             <Text style={styles.label}>Localização</Text>
@@ -44,7 +38,7 @@ export default function Contato() {
         </View>
 
         <View style={styles.informacao}>
-          <Ionicons name="briefcase-outline" size={26} color="#3b82f6" />
+          <Ionicons name='briefcase-outline' size={26} color='#3b82f6' />
 
           <View>
             <Text style={styles.label}>Disponibilidade</Text>
@@ -58,8 +52,8 @@ export default function Contato() {
 
         <TextInput
           style={styles.input}
-          placeholder="Seu nome"
-          placeholderTextColor="#94a3b8"
+          placeholder='Seu nome'
+          placeholderTextColor='#94a3b8'
           value={nome}
           onChangeText={setNome}
         />
@@ -68,9 +62,9 @@ export default function Contato() {
 
         <TextInput
           style={styles.input}
-          placeholder="seu@email.com"
-          placeholderTextColor="#94a3b8"
-          keyboardType="email-address"
+          placeholder='seu@email.com'
+          placeholderTextColor='#94a3b8'
+          keyboardType='email-address'
           value={email}
           onChangeText={setEmail}
         />
@@ -79,10 +73,10 @@ export default function Contato() {
 
         <TextInput
           style={[styles.input, styles.textarea]}
-          placeholder="Digite sua mensagem..."
-          placeholderTextColor="#94a3b8"
+          placeholder='Digite sua mensagem...'
+          placeholderTextColor='#94a3b8'
           multiline
-          textAlignVertical="top"
+          textAlignVertical='top'
           value={mensagem}
           onChangeText={setMensagem}
         />
