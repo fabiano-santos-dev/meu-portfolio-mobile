@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Cabecalho from '../componentes/Cabecalho';
+import Projetos from '../componentes/Projetos';
 import Sobre from '../componentes/Sobre';
 
 export default function HomeScreen() {
@@ -58,6 +59,7 @@ export default function HomeScreen() {
           <Sobre />
         </View>
         <Skills />
+        <Projetos />
       </ScrollView>
     </SafeAreaView>
   );
