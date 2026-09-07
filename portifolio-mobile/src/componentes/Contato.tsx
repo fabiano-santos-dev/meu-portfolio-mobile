@@ -1,11 +1,74 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 export default function Contato() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [mensagem, setMensagem] = useState('');
+
+  const [enviando, setEnviando] = useState(false);
+
+  const enviarMensagem = async () => {
+    if (!nome.trim() || !email.trim() || !mensagem.trim()) {
+      Alert.alert('Campos obrigatórios', 'Preencha nome, e-mail e mensagem.');
+      return;
+    }
+
+    setEnviando(true);
+
+    try {
+      const resposta = await fetch('https://formspree.io/f/xyeydenr', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: nome,
+          email: email,
+          message: mensagem,
+        }),
+      });
+
+      const resultado = await resposta.json();
+
+      if (resposta.ok) {
+        Alert.alert(
+          'Mensagem enviada!',
+          'Obrigado pelo contato. Sua mensagem foi enviada com sucesso.'
+        );
+
+        setNome('');
+        setEmail('');
+        setMensagem('');
+      } else {
+        console.log('Erro Formspree:', resultado);
+
+        Alert.alert(
+          'Erro',
+          'Não foi possível enviar a mensagem. Tente novamente.'
+        );
+      }
+    } catch (error) {
+      console.log('Erro ao enviar:', error);
+
+      Alert.alert(
+        'Erro',
+        'Não foi possível enviar a mensagem. Verifique sua conexão.'
+      );
+    } finally {
+      setEnviando(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -24,6 +87,7 @@ export default function Contato() {
 
           <View>
             <Text style={styles.label}>Email</Text>
+
             <Text style={styles.valor}>fasnaweb2020@gmail.com</Text>
           </View>
         </View>
@@ -33,6 +97,7 @@ export default function Contato() {
 
           <View>
             <Text style={styles.label}>Localização</Text>
+
             <Text style={styles.valor}>Brasil, Itajubá - Minas Gerais</Text>
           </View>
         </View>
@@ -42,6 +107,7 @@ export default function Contato() {
 
           <View>
             <Text style={styles.label}>Disponibilidade</Text>
+
             <Text style={styles.valor}>Aberto a novos projetos</Text>
           </View>
         </View>
@@ -65,6 +131,7 @@ export default function Contato() {
           placeholder='seu@email.com'
           placeholderTextColor='#94a3b8'
           keyboardType='email-address'
+          autoCapitalize='none'
           value={email}
           onChangeText={setEmail}
         />
@@ -81,8 +148,16 @@ export default function Contato() {
           onChangeText={setMensagem}
         />
 
-        <Pressable style={styles.botao}>
-          <Text style={styles.textoBotao}>Enviar mensagem</Text>
+        <Pressable
+          style={[styles.botao, enviando && styles.botaoDesativado]}
+          onPress={enviarMensagem}
+          disabled={enviando}
+        >
+          {enviando ? (
+            <ActivityIndicator color='#ffffff' />
+          ) : (
+            <Text style={styles.textoBotao}>Enviar mensagem</Text>
+          )}
         </Pressable>
       </View>
     </View>
@@ -172,6 +247,10 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 7,
     alignItems: 'center',
+  },
+
+  botaoDesativado: {
+    opacity: 0.7,
   },
 
   textoBotao: {
