@@ -1,56 +1,130 @@
-# Welcome to your Expo app 👋
+# 📱 Meu Portfólio Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile do meu portfólio pessoal, desenvolvido com React Native e Expo.
 
-## Get started
+Este projeto apresenta minha trajetória como estudante de Análise e Desenvolvimento de Sistemas, minhas habilidades, projetos desenvolvidos e formas de contato.
 
-1. Install dependencies
+## 🚀 Sobre o projeto
 
-   ```bash
-   npm install
-   ```
+Este aplicativo foi desenvolvido para adaptar meu portfólio web para dispositivos móveis, mantendo sua identidade visual e seus principais conteúdos.
 
-2. Start the app
+O aplicativo possui navegação entre as seções e recursos para acesso aos meus projetos, redes profissionais, currículo e formulário de contato.
 
-   ```bash
-   npx expo start
-   ```
+## ✨ Funcionalidades
 
-In the output, you'll find options to open the app in a
+- 🏠 Página inicial
+- 👨‍💻 Seção Sobre Mim
+- 🛠️ Seção de Skills
+- 📂 Seção de Projetos
+- 📧 Formulário de contato
+- 📄 Visualização e compartilhamento do currículo
+- 🔗 Link para GitHub
+- 💼 Link para LinkedIn
+- 📱 Navegação entre as seções
+- 🔗 Links para os projetos no GitHub
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tecnologias utilizadas
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- React Native
+- Expo
+- javaScript
+- Expo Router
+- Ionicons
+- Formspree
+- Git
+- GitHub
 
-## Get a fresh project
+## 📁 Estrutura do projeto
 
-When you're ready, run:
+```text
+portifolio-mobile/
+├── assets/
+├── src/
+│   ├── app/
+│   │   └── index.tsx
+│   └── componentes/
+│       ├── Cabecalho.tsx
+│       ├── Home.tsx
+│       ├── Sobre.tsx
+│       ├── Skills.tsx
+│       ├── Projetos.tsx
+│       ├── Contato.tsx
+│       └── Footer.tsx
+├── package.json
+├── tsconfig.json
+└── README.md
 
-```bash
-npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+⚙️ Como executar
 
-### Other setup steps
+1. Clonar o repositório
+git clone https://github.com/fabiano-santos-dev/meu-portfolio-mobile.git
+2. Entrar na pasta do projeto
+cd meu-portfolio-mobile/portifolio-mobile
+3. Instalar as dependências
+npm install
+4. Iniciar o Expo
+npx expo start
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
 
-## Learn more
+📱 Executando no celular
 
-To learn more about developing your project with Expo, look at the following resources:
+O aplicativo pode ser testado utilizando o Expo Go em um dispositivo Android ou iOS.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Após executar:
 
-## Join the community
+npx expo start
 
-Join our community of developers creating universal apps.
+utilize o QR Code exibido pelo Expo para abrir o aplicativo no dispositivo.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+📧 Formulário de contato
+
+O formulário permite que o visitante informe:
+
+Nome
+E-mail
+Mensagem
+
+As mensagens são enviadas utilizando o Formspree.
+
+📄 Currículo
+
+O aplicativo possui uma prévia do currículo e uma opção para compartilhar o arquivo PDF utilizando os recursos de compartilhamento do dispositivo.
+
+📂 Projetos
+Construlink
+
+Projeto desenvolvido em equipe utilizando GitHub e fluxo de desenvolvimento colaborativo.
+
+https://github.com/NatanSamuel52/Contrulink
+
+Meu Portfólio Web
+
+Versão web do meu portfólio pessoal.
+
+https://github.com/fabiano-santos-dev/meu-portfolio-react
+
+🔗 Contatos
+
+GitHub:
+https://github.com/fabiano-santos-dev
+
+LinkedIn:
+https://www.linkedin.com/in/fabiano-santos-dev/
+
+E-mail:
+fasnaweb2020@gmail.com
+
+👨‍💻 Autor
+
+Fabiano Alves
+
+Estudante de Análise e Desenvolvimento de Sistemas e desenvolvedor Web em formação.
+
+📌 Status do projeto
+
+Concluído e funcional.
+
+O aplicativo foi desenvolvido e testado utilizando Expo Go.
+
+© 2026 Meu Portfólio. Todos os direitos reservados.
