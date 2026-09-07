@@ -1,7 +1,55 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Asset } from 'expo-asset';
+import * as Sharing from 'expo-sharing';
+import { useState } from 'react';
+import {
+  Alert,
+  Image,
+  Linking,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
-export default function Home() {
+type HomeProps = {
+  onNavegar?: (secao: string) => void;
+};
+
+export default function Home({ onNavegar }: HomeProps) {
+  const [curriculoAberto, setCurriculoAberto] = useState(false);
+  const abrirLink = async (url: string) => {
+    try {
+      await Linking.openURL(url);
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível abrir este link.');
+    }
+  };
+  const baixarCurriculo = async () => {
+    try {
+      const arquivo = Asset.fromModule(require('../../assets/curriculo.pdf'));
+
+      await arquivo.downloadAsync();
+
+      if (arquivo.localUri && (await Sharing.isAvailableAsync())) {
+        await Sharing.shareAsync(arquivo.localUri, {
+          mimeType: 'application/pdf',
+          dialogTitle: 'Baixar currículo',
+        });
+      } else {
+        Alert.alert(
+          'Aviso',
+          'O compartilhamento não está disponível neste aparelho.'
+        );
+      }
+    } catch (error) {
+      console.log('Erro ao abrir currículo:', error);
+
+      Alert.alert('Erro', 'Não foi possível abrir o currículo.');
+    }
+  };
+
   return (
     <View style={styles.conteudo}>
       <Image source={require('../../assets/fs1.png')} style={styles.foto} />
@@ -21,28 +69,77 @@ export default function Home() {
       </Text>
 
       <View style={styles.botoes}>
-        <Pressable style={styles.botaoProjetos}>
+        <Pressable
+          style={styles.botaoProjetos}
+          onPress={() => onNavegar?.('projetos')}
+        >
           <Text style={styles.textoBotaoProjetos}>Meus projetos →</Text>
         </Pressable>
 
-        <Pressable style={styles.botaoCurriculo}>
+        <Pressable
+          style={styles.botaoCurriculo}
+          onPress={() => setCurriculoAberto(true)}
+        >
           <Text style={styles.textoBotaoCurriculo}>Ver currículo ↓</Text>
         </Pressable>
       </View>
 
       <View style={styles.redesSociais}>
-        <Pressable>
+        <Pressable
+          onPress={() => abrirLink('https://github.com/fabiano-santos-dev')}
+        >
           <Ionicons name='logo-github' size={28} color='#ffffff' />
         </Pressable>
 
-        <Pressable>
+        <Pressable
+          onPress={() =>
+            abrirLink('https://www.linkedin.com/in/fabiano-fasnaweb-desenvolvedor/')}
+        >
           <Ionicons name='logo-linkedin' size={28} color='#ffffff' />
         </Pressable>
 
-        <Pressable>
+        <Pressable onPress={() => abrirLink('mailto:fasnaweb2020@gmail.com')}>
           <Ionicons name='mail-outline' size={28} color='#ffffff' />
         </Pressable>
       </View>
+
+      {/* JANELA DO CURRÍCULO */}
+
+      <Modal
+        visible={curriculoAberto}
+        transparent
+        animationType='fade'
+        onRequestClose={() => setCurriculoAberto(false)}
+      >
+        <View style={styles.fundoModal}>
+          <View style={styles.modalCurriculo}>
+            {/* FECHAR */}
+
+            <Pressable
+              style={styles.botaoFechar}
+              onPress={() => setCurriculoAberto(false)}
+            >
+              <Ionicons name='close' size={30} color='#111111' />
+            </Pressable>
+
+            {/* PREVIEW */}
+
+            <Image
+              source={require('../../assets/curriculo-preview.png')}
+              style={styles.previewCurriculo}
+              resizeMode='contain'
+            />
+
+            {/* COMPARTILHAR / BAIXAR */}
+
+            <Pressable style={styles.botaoBaixar} onPress={baixarCurriculo}>
+              <Text style={styles.textoBotaoBaixar}>Baixar currículo</Text>
+
+              <Ionicons name='download-outline' size={22} color='#ffffff' />
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -128,5 +225,52 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 22,
     marginTop: 25,
+  },
+
+  /* MODAL */
+
+  fundoModal: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+  },
+
+  modalCurriculo: {
+    width: '100%',
+    maxWidth: 500,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 15,
+    alignItems: 'center',
+  },
+
+  botaoFechar: {
+    alignSelf: 'flex-end',
+    padding: 5,
+    marginBottom: 5,
+  },
+
+  previewCurriculo: {
+    width: '100%',
+    height: 500,
+  },
+
+  botaoBaixar: {
+    marginTop: 15,
+    backgroundColor: '#3b82f6',
+    paddingVertical: 13,
+    paddingHorizontal: 22,
+    borderRadius: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+
+  textoBotaoBaixar: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
